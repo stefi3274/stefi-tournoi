@@ -1,0 +1,17 @@
+{
+  "name": "stefi-tournoi-fc26",
+  "version": "1.0.0",
+  "description": "SteFi Tournoi FC 26 - Gestionnaire de championnats",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
