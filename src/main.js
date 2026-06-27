@@ -1,5 +1,5 @@
 import './styles/main.css'
-import { renderHeader } from './components/Header.js'
+import { renderHeader, initHeaderEvents } from './components/Header.js'
 import { renderTournoiPage, initTournoiPage } from './pages/Tournoi.js'
 import { renderAdminPage, initAdminPage } from './pages/Admin.js'
 import { renderInscriptionPage, initInscriptionPage } from './pages/Inscription.js'
@@ -25,10 +25,15 @@ export function navigateTo(page) {
     renderHeader(page, appState.logoData) +
     `<main class="main">${pageHTML}</main>`
 
+  // Nav tabs
   document.querySelectorAll('.nav-tab').forEach(btn => {
     btn.addEventListener('click', () => navigateTo(btn.dataset.page))
   })
 
+  // Header secret click
+  initHeaderEvents()
+
+  // Init page
   if (page === 'tournoi') initTournoiPage()
   else if (page === 'admin') initAdminPage()
   else if (page === 'inscription') initInscriptionPage()

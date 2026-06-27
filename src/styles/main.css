@@ -249,3 +249,17 @@ body {
 
 @media (max-width: 900px) { .admin-grid { grid-template-columns: 1fr; } }
 @media (max-width: 600px) { .main { padding: 1rem; } .logo-txt h1 { font-size: 1.3rem; } .grp-grid { grid-template-columns: 1fr; } }
+
+/* Shake animation pour mot de passe incorrect */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-8px); }
+  80% { transform: translateX(8px); }
+}
+
+/* Transition logo click */
+.logo-icon, .logo-img {
+  transition: transform .2s cubic-bezier(.34,1.56,.64,1) !important;
+}
