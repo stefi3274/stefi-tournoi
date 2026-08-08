@@ -6,34 +6,24 @@ import { renderInscriptionPage, initInscriptionPage } from './pages/Inscription.
 import { renderRegistrationsPage, initRegistrationsPage } from './pages/Registrations.js'
 import { initConfetti } from './components/Confetti.js'
 
-export const appState = {
-  currentPage: 'tournoi',
-  logoData: null,
-}
+export const appState = { currentPage: 'tournoi', logoData: null }
 
 export function navigateTo(page) {
   appState.currentPage = page
   const app = document.getElementById('app')
-
   let pageHTML = ''
   if (page === 'tournoi') pageHTML = renderTournoiPage()
   else if (page === 'admin') pageHTML = renderAdminPage()
   else if (page === 'inscription') pageHTML = renderInscriptionPage()
   else if (page === 'registrations') pageHTML = renderRegistrationsPage()
 
-  app.innerHTML =
-    renderHeader(page, appState.logoData) +
-    `<main class="main">${pageHTML}</main>`
+  app.innerHTML = renderHeader(page, appState.logoData) + `<main class="main">${pageHTML}</main>`
 
-  // Nav tabs
   document.querySelectorAll('.nav-tab').forEach(btn => {
     btn.addEventListener('click', () => navigateTo(btn.dataset.page))
   })
-
-  // Header secret click
   initHeaderEvents()
 
-  // Init page
   if (page === 'tournoi') initTournoiPage()
   else if (page === 'admin') initAdminPage()
   else if (page === 'inscription') initInscriptionPage()

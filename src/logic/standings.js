@@ -1,5 +1,3 @@
-// ── Calcul des classements ──
-
 export function applyScore(standings, homeId, sh, awayId, sa) {
   const H = standings.find(s => s.player_id === homeId)
   const A = standings.find(s => s.player_id === awayId)
@@ -26,9 +24,7 @@ export function revertScore(standings, homeId, sh, awayId, sa) {
 
 export function sortStandings(standings) {
   return [...standings].sort((a, b) =>
-    b.pts - a.pts ||
-    b.diff - a.diff ||
-    b.bp - a.bp ||
+    b.pts - a.pts || b.diff - a.diff || b.bp - a.bp ||
     (a.name || '').localeCompare(b.name || '')
   )
 }
@@ -37,19 +33,7 @@ export function getBest3rds(groups) {
   const thirds = []
   groups.forEach(g => {
     const sorted = sortStandings(g.standings)
-    if (sorted.length >= 3) {
-      thirds.push({ ...sorted[2], groupLetter: g.letter })
-    }
+    if (sorted.length >= 3) thirds.push({ ...sorted[2], groupLetter: g.letter })
   })
-  return thirds
-    .sort((a, b) => b.pts - a.pts || b.diff - a.diff || b.bp - a.bp)
-    .slice(0, 4)
-}
-
-export function isGroupComplete(matches) {
-  return matches.length > 0 && matches.every(m => m.played)
-}
-
-export function areAllGroupsComplete(groups) {
-  return groups.every(g => isGroupComplete(g.matches))
+  return thirds.sort((a, b) => b.pts - a.pts || b.diff - a.diff || b.bp - a.bp).slice(0, 4)
 }
